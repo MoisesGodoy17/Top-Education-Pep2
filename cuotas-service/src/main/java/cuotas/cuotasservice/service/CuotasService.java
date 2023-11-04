@@ -10,6 +10,8 @@ import org.springframework.web.client.RestTemplate;
 import java.time.LocalDate;
 import java.util.List;
 
+
+
 @SpringBootApplication
 @Service
 public class CuotasService {
@@ -27,7 +29,7 @@ public class CuotasService {
     }
 
     public boolean alumnoConCuotas(AlumnoEntity alumnoEntity){
-        return alumnoEntity.getTipoPago().equals("Cuotas");
+        return alumnoEntity.getTipo_pago().equals("Cuotas");
     }
 
     public void crearCuota(String rut, String cant_cuotas, LocalDate fechaEmision){
@@ -150,6 +152,6 @@ public class CuotasService {
     }
 
     public List<CuotasEntity> obtenerCuotasPorRut(String rut) {
-        return cuotasRepository.findByAlumnoRut(rut);
+        return cuotasRepository.findByRut(rut);
     }
 }
