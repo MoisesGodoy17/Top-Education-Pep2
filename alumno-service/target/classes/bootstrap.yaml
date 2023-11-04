@@ -1,0 +1,18 @@
+spring:
+  devtools:
+    restart:
+      aditional-paths: src/main/java
+  application:
+    name: empleado-service
+  cloud:
+    config:
+      enabled: true
+      uri: http://localhost:8081
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ms_alumno
+    username: postgres
+    password: hola123
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
