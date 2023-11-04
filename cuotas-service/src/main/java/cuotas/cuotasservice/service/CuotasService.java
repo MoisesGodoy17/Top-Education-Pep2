@@ -5,6 +5,9 @@ import cuotas.cuotasservice.repository.CuotasRepository;
 import lombok.Generated;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import java.time.LocalDate;
@@ -24,36 +27,47 @@ public class CuotasService {
 
 
     public List<AlumnoEntity> getAlumno(String rut) {
-        List<AlumnoEntity> alumno = restTemplate.getForObject("http://alumno-service/alumno/" + rut, List.class);
-        return alumno;
+        ResponseEntity<List<AlumnoEntity>> responseEntity = restTemplate.exchange(
+                "http://alumno-service/alumno/" + rut,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<AlumnoEntity>>() {}
+        );
+        return responseEntity.getBody();
     }
 
     public boolean alumnoConCuotas(AlumnoEntity alumnoEntity){
         return alumnoEntity.getTipo_pago().equals("Cuotas");
     }
 
-    public void crearCuota(String rut, String cant_cuotas, LocalDate fechaEmision){
-        List<AlumnoEntity> alumnoEntity = getAlumno(rut);
-        int cantCuotas = Integer.parseInt(cant_cuotas);
-        float descuento = 0.0f;
-        descuento = calcularDescuentoAno(alumnoEntity.get(0), descuento) + calcularDescuentoColegio(alumnoEntity.get(0), descuento);
-        int montoInt = (int) Math.floor(((float) 1500000 /cantCuotas) - ((float) 1500000 /cantCuotas)*descuento);
+    public void crearCuota(CuotasEntity cuotas) {
+        List<AlumnoEntity> alumnoEntityList = getAlumno(cuotas.getRut());
+        if (alumnoEntityList != null && !alumnoEntityList.isEmpty()) {
+            AlumnoEntity alumnoEntity = alumnoEntityList.get(0);
 
-        if (alumnoConCuotas(alumnoEntity.get(0)) && verificaColegio(alumnoEntity.get(0), cantCuotas)){
-            for (int i = 1; i < cantCuotas+1; i++){
-                CuotasEntity cuotasEntity = new CuotasEntity();
-                cuotasEntity.setMonto(montoInt);
-                cuotasEntity.setFechaEmision(fechaEmision);
-                cuotasEntity.setFechaPago(fechaEmision.withDayOfMonth(5).plusMonths(i));
-                cuotasEntity.setFechaVencimiento(fechaEmision.withDayOfMonth(10).plusMonths(i));
-                cuotasEntity.setEstado("No pagada");
-                cuotasEntity.setCant_cuotas(cantCuotas);
-                cuotasEntity.setDescuento(0);
-                cuotasEntity.setRut(rut);
-                cuotasRepository.save(cuotasEntity);
+            int cantCuotas = cuotas.getCant_cuotas();
+            float descuento = calcularDescuentoAno(alumnoEntity, 0.0f) + calcularDescuentoColegio(alumnoEntity, 0.0f);
+            int montoInt = (int) Math.floor(((float) 1500000 / cantCuotas) - ((float) 1500000 / cantCuotas) * descuento);
+
+            if (alumnoConCuotas(alumnoEntity) && verificaColegio(alumnoEntity, cantCuotas)) {
+                for (int i = 1; i < cantCuotas + 1; i++) {
+                    CuotasEntity cuotasEntity = new CuotasEntity();
+                    cuotasEntity.setMonto(montoInt);
+                    cuotasEntity.setFechaEmision(cuotas.getFechaEmision());
+                    cuotasEntity.setFechaPago(cuotas.getFechaEmision().withDayOfMonth(5).plusMonths(i));
+                    cuotasEntity.setFechaVencimiento(cuotas.getFechaEmision().withDayOfMonth(10).plusMonths(i));
+                    cuotasEntity.setEstado("No pagada");
+                    cuotasEntity.setCant_cuotas(cantCuotas);
+                    cuotasEntity.setDescuento(0);
+                    cuotasEntity.setRut(cuotas.getRut());
+                    cuotasRepository.save(cuotasEntity);
+                }
             }
+        } else {
+            System.out.println("Vacio");
         }
     }
+
 
     public boolean verificaColegio(AlumnoEntity alumnoEntity, int canCuotas){
         if (alumnoEntity.getTipo_colegio().equals("Municipal") && canCuotas <= 10){

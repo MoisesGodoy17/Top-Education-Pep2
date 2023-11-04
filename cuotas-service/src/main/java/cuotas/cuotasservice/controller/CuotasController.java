@@ -1,6 +1,8 @@
 package cuotas.cuotasservice.controller;
 
+import cuotas.cuotasservice.models.AlumnoEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +15,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 
-@RequestMapping("/cuota")
+@RequestMapping("/cuotas")
 @RestController
 public class CuotasController {
 
@@ -28,11 +30,9 @@ public class CuotasController {
     }
 
     @PostMapping("/crear")
-    public ResponseEntity<CuotasEntity> crear(
-            @RequestParam("rut") String rut,
-            @RequestParam("cant_cuotas") String cant_cuotas,
-            @RequestParam("fechaEmision") LocalDate fechaEmision) {
-        cuotasService.crearCuota(rut, cant_cuotas, fechaEmision);
+    public ResponseEntity<CuotasEntity> crear(@RequestBody CuotasEntity cuotas) {
+        System.out.println("pene");
+        cuotasService.crearCuota(cuotas);
         return ResponseEntity.ok(null);
     }
 }

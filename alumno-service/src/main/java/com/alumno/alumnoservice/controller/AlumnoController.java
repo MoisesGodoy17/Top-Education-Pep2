@@ -27,7 +27,7 @@ public class AlumnoController {
         return ResponseEntity.ok(alumnoEntity);
     }
 
-    @PostMapping("/{rut}")
+    @GetMapping("/{rut}")
     public ResponseEntity<List<AlumnoEntity>> findAlumnoByRut(@PathVariable("rut") String rut){
         List <AlumnoEntity> alumno = alumnoService.findByRut(rut);
         return ResponseEntity.ok(alumno);
