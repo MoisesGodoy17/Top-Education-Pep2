@@ -23,13 +23,15 @@ public class CuotasController {
     @GetMapping("/{rut}")
     public ResponseEntity<List<CuotasEntity>> cuotas(@PathVariable("rut") String rut){
         List<CuotasEntity> cuotasEntities = cuotasService.obtenerCuotasPorRut(rut);
+        System.out.println("11111");
         return ResponseEntity.ok(cuotasEntities);
     }
 
-    @PostMapping()
-    public ResponseEntity<CuotasEntity> crear(@PathVariable("rut") String rut,
-                                              @PathVariable("cant_cuotas") String cant_cuotas,
-                                              @PathVariable("fechaEmision")LocalDate fechaEmision){
+    @PostMapping("/crear")
+    public ResponseEntity<CuotasEntity> crear(
+            @RequestParam("rut") String rut,
+            @RequestParam("cant_cuotas") String cant_cuotas,
+            @RequestParam("fechaEmision") LocalDate fechaEmision) {
         cuotasService.crearCuota(rut, cant_cuotas, fechaEmision);
         return ResponseEntity.ok(null);
     }
