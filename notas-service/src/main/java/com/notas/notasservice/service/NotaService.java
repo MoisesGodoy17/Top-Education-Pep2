@@ -62,7 +62,7 @@ public class NotaService {
     }
 
 
-    public int verificaPrimerMesDelMes() {
+    public int verificaPrimerLunesDelMes() {
         List<LocalDate> primerosLunes = obtenerPrimerosLunes();
         LocalDate fechaDada = LocalDate.now();
         if (contieneFecha(primerosLunes, fechaDada)) {//si la fecha coincide con el primer lunes del mes, entonces permite recibir archivos

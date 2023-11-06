@@ -5,6 +5,8 @@ import AlumnoComponent from './components/AlumnoComponent';
 import AlumnosComponent from './components/AlumnosComponent';
 import CrearCuotasComponent from './components/CrearCuotasComponent';
 import CuotasComponent from './components/CuotasComponent';
+import ReporteComponent from './components/ReporteComponent';
+import ArchivoComponent from './components/ArchivoComponent';
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
             <Route path="/alumnos" element={<AlumnosComponent />} />
             <Route path="/new-cuotas" element={<CrearCuotasComponent />} />
             <Route path="/cuotas" element={<CuotasComponent />} />
+            <Route path="/reporte" element={<ReporteComponent />} />
+            <Route path="/archivo" element={<ArchivoComponent />} />
           </Routes>
         </div>
       </BrowserRouter>

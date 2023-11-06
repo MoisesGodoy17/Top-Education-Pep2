@@ -10,6 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RequestMapping("/notas")
 @RestController
 public class NotasController {
@@ -20,9 +23,9 @@ public class NotasController {
     @Autowired
     private ReporteService reporteService;
 
-    @GetMapping("/subir")
+    @PostMapping("/subir")
     public ResponseEntity<String> handleFileUpload(@RequestParam("archivo") MultipartFile file) {
-        if (notaService.verificaPrimerMesDelMes() == 1) {
+        if (notaService.verificaPrimerLunesDelMes() == 1) {
             notaService.guardarArchivo(file);
             notaService.leerCsv(file.getOriginalFilename()); // Antes: "prueba.csv"
             return ResponseEntity.status(HttpStatus.OK).body("Archivo cargado exitosamente!!! ");
@@ -37,24 +40,33 @@ public class NotasController {
         return ResponseEntity.status(HttpStatus.OK).body("Descuento generado de forma exitoza!!! ");
     }
     */
-    @GetMapping( "/reporte/{rut}")
+    @GetMapping("/reporte/{rut}")
     @ResponseBody
-    public ResponseEntity<ReporteEstudianteDTO> verReporte(@PathVariable("rut") String rut) {
+    public ResponseEntity<List<ReporteEstudianteDTO>> verReporte(@PathVariable("rut") String rut) {
         if (reporteService.verificaEstudiante(rut)) {
-            ReporteEstudianteDTO reporteDTO = new ReporteEstudianteDTO();
-            reporteDTO.setRut(rut);
-            reporteDTO.setNombres(reporteService.NombresEstudiante(rut));
-            reporteDTO.setMontoTotal(reporteService.MontoTotalporPagar(rut));
-            reporteDTO.setTipoPago(reporteService.TipoDePago(rut));
-            reporteDTO.setPruebasRendidas(0);
-            reporteDTO.setCuotasPactadas(reporteService.cuotasPactadas(rut));
-            reporteDTO.setCuotasPagadas(reporteService.cuotasPagadas(rut));
-            reporteDTO.setCuotasAtrasadas(reporteService.cuotasAtrasadas(rut));
-            reporteDTO.setTotalPagado(reporteService.totalPagado(rut));
+            List<ReporteEstudianteDTO> reportesDTO = new ArrayList<>();
 
-            return ResponseEntity.ok(reporteDTO);
+            // Crear un ReporteEstudianteDTO para cada elemento en la lista, o ajustar según tus necesidades.
+            ReporteEstudianteDTO reporteDTO1 = new ReporteEstudianteDTO();
+            reporteDTO1.setRut(rut);
+            reporteDTO1.setNombres(reporteService.NombresEstudiante(rut));
+            reporteDTO1.setMontoTotal(reporteService.MontoTotalporPagar(rut));
+            reporteDTO1.setTipoPago(reporteService.TipoDePago(rut));
+            reporteDTO1.setPruebasRendidas(0);
+            reporteDTO1.setCuotasPactadas(reporteService.cuotasPactadas(rut));
+            reporteDTO1.setCuotasPagadas(reporteService.cuotasPagadas(rut));
+            reporteDTO1.setCuotasAtrasadas(reporteService.cuotasAtrasadas(rut));
+            reporteDTO1.setTotalPagado(reporteService.totalPagado(rut));
+
+            // Añadir el ReporteEstudianteDTO a la lista
+            reportesDTO.add(reporteDTO1);
+
+            // Puedes seguir añadiendo más ReporteEstudianteDTO a la lista según tus necesidades.
+
+            return ResponseEntity.ok(reportesDTO);
         } else {
             return ResponseEntity.notFound().build();
         }
     }
+
 }
