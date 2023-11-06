@@ -46,12 +46,12 @@ const CrearCuotasComponent = () => {
                                 type='text' value={cuotas.rut} onChange={handleChange} />
                         </div>
                         <div className="form-group mb-3">
-                            <label className="text-white"> Cantidad de Cuotas: </label>
+                            <label className="text-white"> Cantidad de cuotas: </label>
                             <input placeholder="Ingrese la cantidad de cuotas" name="cant_cuotas" className="form-control"
                                 type='number' value={cuotas.cant_cuotas} onChange={handleChange} />
                         </div>
                         <div className="form-group mb-3">
-                                <label className="text-white"> Fecha de Emision: </label>
+                                <label className="text-white"> Fecha de emision: </label>
                                 <input placeholder="Fecha de Emision" name="fechaEmision" className="form-control"
                                     type='date' value={cuotas.fechaEmision} onChange={handleChange} />
                             </div>

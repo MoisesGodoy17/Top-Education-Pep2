@@ -21,22 +21,22 @@ const NavbarComponent = () => {
                             Inicio
                         </a>
                         <a className="nav-link text-white" href="/new-alumno">
-                            Agregar Alumno
+                            Agregar alumno
                         </a>
                         <a className="nav-link text-white" href="/alumnos">
-                            Listado de Alumnos
+                            Listado de alumnos
                         </a>
                         <a className="nav-link text-white" href="/cuotas">
                             Cuotas
                         </a>
                         <a className="nav-link text-white" href="/new-cuotas">
-                            Crear Cuotas
+                            Crear cuotas
                         </a>
                         <a className="nav-link text-white" href="/archivo">
-                            Subir Notas
+                            Subir notas
                         </a>
                         <a className="nav-link text-white" href="/reporte">
-                            Ver Reporte
+                            Ver reporte
                         </a>
                     </div>
                 </div>

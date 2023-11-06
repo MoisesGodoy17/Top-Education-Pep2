@@ -58,7 +58,7 @@ const CuotasComponent = () => {
                 <br></br>
                 <br></br>
                 <div className="card bg-dark rounded-4 border">
-                    <h2 className="text-center text-white mb-4">Lista de Alumnos</h2>
+                    <h2 className="text-center text-white mb-4">Cuotas del Alumno</h2>
                     <div className="table-responsive">
                         <table className="table table-dark table-borderless text-center">
                             <thead>

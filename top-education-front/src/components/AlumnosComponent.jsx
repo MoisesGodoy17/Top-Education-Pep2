@@ -28,7 +28,7 @@ const AlumnosComponent = () => {
                                 <th className='border-bottom border-white'>Nombre del colegio</th>
                                 <th className='border-bottom border-white'>Año de egreso</th>
                                 <th className='border-bottom border-white'>Arancel</th>
-                                <th className='border-bottom border-white'>Accion</th>
+                                <th className='border-bottom border-white'>Tipo de pago</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -42,6 +42,7 @@ const AlumnosComponent = () => {
                                     <td>{alumno.nombre_colegio}</td>
                                     <td>{alumno.ano_egreso}</td>
                                     <td>{alumno.arancel}</td>
+                                    <td>{alumno.tipo_pago}</td>
                                 </tr>
                             ))}
                         </tbody>

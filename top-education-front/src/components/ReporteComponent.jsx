@@ -60,6 +60,8 @@ const ReporteComponent = () => {
                                     <th className='border-bottom border-white'>Cuotas pagadas</th>
                                     <th className='border-bottom border-white'>Cuotas atrasdas</th>
                                     <th className='border-bottom border-white'>Total pagado</th>
+                                    <th className='border-bottom border-white'>Pruebas rendidas</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -72,6 +74,7 @@ const ReporteComponent = () => {
                                         <td>{reporte.cuotasPagadas}</td>
                                         <td>{reporte.cuotasAtrasadas}</td>
                                         <td>{reporte.totalPagado}</td>
+                                        <td>{reporte.pruebasRendidas}</td>
                                     </tr>
                                 ))}
                             </tbody>

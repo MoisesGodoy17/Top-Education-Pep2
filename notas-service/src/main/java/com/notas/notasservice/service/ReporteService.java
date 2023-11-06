@@ -71,16 +71,15 @@ public class ReporteService {
         return alumno.getTipo_pago();
     }
 
-    /*
+
     @Generated
     public int nroPruebasRendidas(String rut){
-        List<NotasEntity> notas = notaRepository.findByAlumnoRut(rut);
+        List<NotasEntity> notas = notaRepository.findByRut(rut);
         if (notas.isEmpty()){
             return 0;
         }
         return notas.size();
     }
-    */
 
     public int cuotasPactadas(String rut){
         AlumnoEntity alumno = getAlumno(rut).get(0);

@@ -1,0 +1,6 @@
+com\alumno\alumnoservice\AlumnoServiceApplication.class
+com\alumno\alumnoservice\entity\AlumnoEntity.class
+com\alumno\alumnoservice\config\RestTemplateConfig.class
+com\alumno\alumnoservice\controller\AlumnoController.class
+com\alumno\alumnoservice\repository\AlumnoRepository.class
+com\alumno\alumnoservice\service\AlumnoService.class

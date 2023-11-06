@@ -52,7 +52,7 @@ public class NotasController {
             reporteDTO1.setNombres(reporteService.NombresEstudiante(rut));
             reporteDTO1.setMontoTotal(reporteService.MontoTotalporPagar(rut));
             reporteDTO1.setTipoPago(reporteService.TipoDePago(rut));
-            reporteDTO1.setPruebasRendidas(0);
+            reporteDTO1.setPruebasRendidas(reporteService.nroPruebasRendidas(rut));
             reporteDTO1.setCuotasPactadas(reporteService.cuotasPactadas(rut));
             reporteDTO1.setCuotasPagadas(reporteService.cuotasPagadas(rut));
             reporteDTO1.setCuotasAtrasadas(reporteService.cuotasAtrasadas(rut));

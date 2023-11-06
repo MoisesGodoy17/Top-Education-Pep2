@@ -56,17 +56,17 @@ const AlumnoComponent = () => {
                                     type='text' value={alumno.nombres} onChange={handleChange} />
                             </div>
                             <div className="form-group mb-3">
-                                <label className="text-white"> Fecha de Nacimiento: </label>
+                                <label className="text-white"> Fecha de nacimiento: </label>
                                 <input placeholder="Ingrese la fecha de nacimiento" name="fecha_nacimiento" className="form-control"
                                     type='date' value={alumno.fecha_nacimiento} onChange={handleChange} />
                             </div>
                             <div className="form-group mb-3">
-                                <label className="text-white"> Nombre del Colegio: </label>
+                                <label className="text-white"> Nombre del colegio: </label>
                                 <input placeholder="Nombre del Colegio de Egreso" name="nombre_colegio" className="form-control"
                                     type='text' value={alumno.nombre_colegio} onChange={handleChange} />
                             </div>
                             <div className="form-group mb-3">
-                                <label className="text-white"> Tipo de Colegio: </label>
+                                <label className="text-white"> Tipo de colegio: </label>
                                 <select name="tipo_colegio" value={alumno.tipo_colegio} onChange={handleChange} className="form-control">
                                     <option value="Municipal">Municipal</option>
                                     <option value="Subvencionado">Subvencionado</option>
@@ -79,7 +79,7 @@ const AlumnoComponent = () => {
                                     type='number' value={alumno.ano_egreso} onChange={handleChange} />
                             </div>
                             <div className="form-group mb-3">
-                                <label className="text-white">Tipo de Pago:</label>
+                                <label className="text-white">Tipo de pago:</label>
                                 <select name="tipo_pago" value={alumno.tipo_pago} onChange={handleChange} className="form-control">
                                     <option value="Contado">Contado</option>
                                     <option value="Cuotas">Cuotas</option>
