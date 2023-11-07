@@ -1,0 +1,8 @@
+cuotas\cuotasservice\controller\CuotasController.class
+cuotas\cuotasservice\repository\CuotasRepository.class
+cuotas\cuotasservice\CuotasServiceApplication.class
+cuotas\cuotasservice\entity\CuotasEntity.class
+cuotas\cuotasservice\service\CuotasService$1.class
+cuotas\cuotasservice\service\CuotasService.class
+cuotas\cuotasservice\config\RestTemplateConfig.class
+cuotas\cuotasservice\models\AlumnoEntity.class
