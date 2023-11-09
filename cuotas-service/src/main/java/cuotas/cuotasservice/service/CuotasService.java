@@ -5,6 +5,7 @@ import cuotas.cuotasservice.repository.CuotasRepository;
 import lombok.Generated;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cglib.core.Local;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -12,8 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import java.time.LocalDate;
 import java.util.List;
-
-
 
 @SpringBootApplication
 @Service
@@ -118,7 +117,6 @@ public class CuotasService {
                 }
             }
         }
-        System.out.println("pene");
     }
 
     public float calculaIntereAtraso(LocalDate fechaLocal, LocalDate fechaVence){
@@ -160,6 +158,10 @@ public class CuotasService {
             cuota.setFechaEmision(LocalDate.now());
             cuotasRepository.save(cuota);
         }
+    }
+
+    public List<CuotasEntity> obtenerCuotasPorRutAndFechaPago(String rut, LocalDate fechaPago){
+        return cuotasRepository.findByRutAndFechaPago(rut, fechaPago);
     }
 
     public CuotasEntity buscarCuotaPorId(Long id){

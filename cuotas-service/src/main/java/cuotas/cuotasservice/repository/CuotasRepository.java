@@ -14,6 +14,8 @@ public interface CuotasRepository extends JpaRepository<CuotasEntity, Long> {
 
     List<CuotasEntity> findByEstado(String estado);
 
+    List<CuotasEntity> findByRutAndFechaPago(String rut, LocalDate fechaPago);
+
     CuotasEntity findByIdCuota(long idCuota);
 
 }

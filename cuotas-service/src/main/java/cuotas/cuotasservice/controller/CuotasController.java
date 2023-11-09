@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import cuotas.cuotasservice.service.CuotasService;
 import cuotas.cuotasservice.entity.CuotasEntity;
+
+import java.time.LocalDate;
 import java.util.List;
 
 @RequestMapping("/cuotas")
@@ -35,5 +37,12 @@ public class CuotasController {
     @PostMapping("/cobrar")
     public void generarInteres() {
         cuotasService.generaCuotasAtrasadas();
+    }
+
+    @GetMapping("/{rut}/{fechaPago}")
+    public ResponseEntity<List<CuotasEntity>> cuotasPorRutAndFFechaPago(@PathVariable("rut") String rut,
+                                                     @PathVariable("fechaPago") LocalDate fechaPago){
+        List<CuotasEntity> cuotasEntities = cuotasService.obtenerCuotasPorRutAndFechaPago(rut, fechaPago);
+        return ResponseEntity.ok(cuotasEntities);
     }
 }
