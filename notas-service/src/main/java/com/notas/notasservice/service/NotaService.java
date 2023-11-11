@@ -181,6 +181,7 @@ public class NotaService {
         notaRepository.save(notasEntity);
     }
 
+    /*
     @Generated
     public void generaDescuentoPorNota(){
         List<LocalDate> primerosLunes = obtenerPrimerosLunes();
@@ -216,6 +217,8 @@ public class NotaService {
             }
         }
     }
+    /*
+     */
 
     @Generated
     public float calcularDescuentoNotas(int prom){

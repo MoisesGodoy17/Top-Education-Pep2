@@ -9,9 +9,9 @@ import java.util.List;
 
 @Repository
 public interface NotaRepository extends JpaRepository<NotasEntity, Long> {
-    List<NotasEntity> findByAlumnoRutAndEstadoNota(String rut, int estado);
+    //List<NotasEntity> findByAlumnoRutAndEstadoNota(String rut, int estado);
 
-    List<NotasEntity> findByFechaNota(LocalDate fechaNota);
+    //List<NotasEntity> findByFechaNota(LocalDate fechaNota);
 
-    List<NotasEntity> findByAlumnoRut(String rut);
+    //List<NotasEntity> findByAlumnoRut(String rut);
 }

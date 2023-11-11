@@ -30,12 +30,13 @@ public class NotasController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No se pudo cargar el archivo o no es la fecha correcta :( ");
     }
 
+    /*
     @GetMapping("/descuento")
     public ResponseEntity<String> generarDescuentoNotas(){
         notaService.generaDescuentoPorNota();
         return ResponseEntity.status(HttpStatus.OK).body("Descuento generado de forma exitoza!!! ");
     }
-
+    */
     @PostMapping("/reporte/{rut}")
     public ResponseEntity<ReporteEstudianteDTO> verReporte(@PathVariable("rut") String rut) {
         if (reporteService.verificaEstudiante(rut)) {
