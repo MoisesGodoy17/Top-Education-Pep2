@@ -44,7 +44,6 @@ public class CuotasService {
         List<AlumnoEntity> alumnoEntityList = getAlumno(cuotas.getRut());
         if (alumnoEntityList != null && !alumnoEntityList.isEmpty()) {
             AlumnoEntity alumnoEntity = alumnoEntityList.get(0);
-
             int cantCuotas = cuotas.getCant_cuotas();
             float descuento = calcularDescuentoAno(alumnoEntity, 0.0f) + calcularDescuentoColegio(alumnoEntity, 0.0f);
             int montoInt = (int) Math.floor(((float) 1500000 / cantCuotas) - ((float) 1500000 / cantCuotas) * descuento);
@@ -67,7 +66,6 @@ public class CuotasService {
             System.out.println("Vacio");
         }
     }
-
 
     public boolean verificaColegio(AlumnoEntity alumnoEntity, int canCuotas){
         if (alumnoEntity.getTipo_colegio().equals("Municipal") && canCuotas <= 10){
@@ -106,9 +104,11 @@ public class CuotasService {
         LocalDate fechaLocal = LocalDate.now();
         int multa;
         if(fechaLocal.getDayOfMonth()==11){
+            System.out.println("lola malo");
             for(CuotasEntity cuotas : cutasAtrasadas){
                 LocalDate fechaVence = cuotas.getFechaVencimiento();
                 if (fechaLocal.isAfter(fechaVence)){
+                    System.out.println("lola bueno");
                     multa = (int) Math.floor((cuotas.getMonto()*calculaIntereAtraso(fechaLocal, fechaVence)) + cuotas.getInteres());
                     System.out.println("diferencia" + multa);
                     cuotas.setEstado("Atrasada");
@@ -118,6 +118,7 @@ public class CuotasService {
                 }
             }
         }
+        System.out.println("pene");
     }
 
     public float calculaIntereAtraso(LocalDate fechaLocal, LocalDate fechaVence){
