@@ -137,27 +137,4 @@ public class ReporteService {
         return total;
     }
 
-    public ReporteEstudianteDTO generatedReport(String rut){
-        String nombres = NombresEstudiante(rut);
-        int montoTotal = MontoTotalporPagar(rut);
-        String tipoPago = TipoDePago(rut);
-        int pruebasRendidas = 0;
-        int cuotasPactadas = cuotasPactadas(rut);
-        int cuotasPagadas = cuotasPagadas(rut);
-        int cuotasAtrasadas = cuotasAtrasadas(rut);
-        int totalPagado = totalPagado(rut);
-
-        ReporteEstudianteDTO reporte = new ReporteEstudianteDTO(
-                rut,
-                nombres,
-                montoTotal,
-                tipoPago,
-                pruebasRendidas,
-                cuotasPactadas,
-                cuotasPagadas,
-                cuotasAtrasadas,
-                totalPagado);
-        return reporte;
-    }
-
 }
