@@ -1,6 +1,8 @@
 package com.notas.notasservice.controller;
 
 import com.notas.notasservice.service.NotaService;
+import com.notas.notasservice.models.ReporteEstudianteDTO;
+import com.notas.notasservice.service.ReporteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,12 +10,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-@Controller
-@RequestMapping
+@RequestMapping("/notas")
+@RestController
 public class NotasController {
 
     @Autowired
     private NotaService notaService;
+
+    @Autowired
+    private ReporteService reporteService;
 
     @GetMapping("/subir")
     public ResponseEntity<String> handleFileUpload(@RequestParam("archivo") MultipartFile file) {
@@ -30,4 +35,16 @@ public class NotasController {
         notaService.generaDescuentoPorNota();
         return ResponseEntity.status(HttpStatus.OK).body("Descuento generado de forma exitoza!!! ");
     }
+
+    @PostMapping("/reporte/{rut}")
+    public ResponseEntity<ReporteEstudianteDTO> verReporte(@PathVariable("rut") String rut) {
+        if (reporteService.verificaEstudiante(rut)) {
+            ReporteEstudianteDTO reporteDTO = reporteService.generatedReport(rut);
+
+            return ResponseEntity.ok(reporteDTO);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }
