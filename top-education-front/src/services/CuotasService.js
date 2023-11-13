@@ -14,6 +14,9 @@ class CuotasService {
     pagarCuota(idCuota){
         return axios.post(CUOTAS_API_URL+"pagar/"+idCuota, idCuota);
     }
+    cobrarCuotas(){
+        return axios.post(CUOTAS_API_URL+"cobrar");
+    }
 }
 
 export default new CuotasService()

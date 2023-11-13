@@ -33,6 +33,8 @@ const CrearCuotasComponent = () => {
     };
 
     return (<div><div className="container">
+        <br></br>
+        <br></br>
         <div className="row">
             <div className="card col-md-4 offset-md-3 offset-md-3 bg-dark text-white rounded-4 mx-auto">
                 <h3 className="text-center">Cuotas</h3>

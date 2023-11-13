@@ -29,6 +29,8 @@ const CuotasComponent = () => {
 
     return (
         <div>
+            <br></br>
+            <br></br>
             <div className="container1">
                 <h1 className="text-center">Ver Cuotas</h1>
                 <div className="col-lg-4 col-md-6 col-sm-12 mx-auto">
